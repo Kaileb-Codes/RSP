@@ -3,7 +3,21 @@
 
 #include <iostream>
 #include <string>
+#include <random>
 
+void CPUrps() {
+    int rps = 1+ rand()%3;
+    if (rps == 1) {
+        ;
+        std::cout << "They chose Rock\n";
+    }
+    else if (rps == 2) {
+        std::cout << "They chose Paper\n";
+    }
+    else {
+        std::cout << "They chose Scissors\n";
+    }
+}
 
 int main()
 {
@@ -11,8 +25,8 @@ int main()
     int loses = 0;
     int ties = 0;
     int rounds = 0;
-    int rps = 0;
     bool fun = true;
+    int rps;
     std::string choice;
 
     int check;
@@ -35,7 +49,7 @@ int main()
         }
         else {
             rounds++;
-            //CPUrps;
+            CPUrps();
                 if (choice == "rock" || "ROCK" || "Rock") {
                     if (rps == 1) {
                         std::cout << "You both picked Rock! Tie.\n";
@@ -84,15 +98,7 @@ int main()
 
 
 
-/** CPUrps
-rps = random(1,3)
-if rps == 1
-std :: cout << "They chose Rock\n"
-else if rps == 2
-std :: cout << "They chose Paper\n"
-else
-std :: cout << "They chose Scissors\n"
-*/
+
 
 
 
