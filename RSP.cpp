@@ -4,23 +4,38 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <algorithm>
+#include <cctype> 
 
+int CPUrps() {
+    int rps = 1 + rand() % 3;
+    if (rps == 1) {
+         std::cout << "They chose Rock\n";
+     }
+     else if (rps == 2) {
+         std::cout << "They chose Paper\n";
+     }
+     else if (rps == 3) {
+         std::cout << "They chose Scissors\n";
+     }
+    return rps;
+}
 
 int main()
 {
-    int CPUrps();
     int wins = 0;
     int loses = 0;
     int ties = 0;
     int rounds = 0;
     int fun = 0;
-    int rps = 0;
+    int a = 0;
     std::string choice;
 
     while (fun == 0) {
         std::cout << "Rock, Paper, or Scissors? Type 'Quit' to quit.\n";
         std::cin >> choice;
-        if (choice == "Quit") {
+        std::transform(choice.begin(), choice.end(), choice.begin(), [](unsigned char c) {return std::toupper(c); });
+        if (choice == "QUIT") {
             std::cout << "You won " << wins << " times\n" << "You lost " << loses << " times\n"
                 << "You tied " << ties << " times\n" << "You played " << rounds << " times\n";
             if (wins > loses) {
@@ -35,14 +50,14 @@ int main()
             fun++;
         }
         else {
-            CPUrps;
-            if (choice == "Rock") {
+            if (choice == "ROCK") {
                 rounds++;
-                if (rps == 1) {
+                a = CPUrps();
+                if (a == 1) {
                     std::cout << "You both picked Rock! Tie.\n";
                     ties++;
                 }
-                else if (rps == 2) {
+                else if (a == 2) {
                     std::cout << "Paper beats Rock! You lose.\n";
                     loses++;
                 }
@@ -51,13 +66,14 @@ int main()
                     wins++;
                 }
             }
-            else if (choice == "Paper") {
+            else if (choice == "PAPER") {
                 rounds++;
-                if (rps == 1) {
+                a = CPUrps();
+                if (a == 1) {
                     std::cout << "Paper beats Rock! You win.\n";
                     wins++;
                 }
-                else if (rps == 2) {
+                else if (a == 2) {
                     std::cout << "You both picked Paper! Tie.\n";
                     ties++;
                 }
@@ -66,13 +82,14 @@ int main()
                     loses++;
                 }
             }
-            else if (choice == "Scissors") {
+            else if (choice == "SCISSORS") {
                 rounds++;
-                if (rps == 1) {
+                a = CPUrps();
+                if (a == 1) {
                     std::cout << "Rock beats Scissors! You lose.\n";
                     loses++;
                 }
-                else if (rps == 2) {
+                else if (a == 2) {
                     std::cout << "Scissors beats Paper! You win.\n";
                     wins++;
                 }
@@ -86,19 +103,7 @@ int main()
     }
 }
 
-int CPUrps() {
-    int rps = 1 + rand() % 3;
-    if (rps == 1) {
-        std::cout << "They chose Rock\n";
-    }
-    else if (rps == 2) {
-        std::cout << "They chose Paper\n";
-    }
-    else {
-        std::cout << "They chose Scissors\n";
-    }
-    return rps;
-}
+
 
 
 
